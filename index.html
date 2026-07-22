@@ -210,83 +210,76 @@
     .exp-pub:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ── PUBLICATIONS ────────────────────────────── */
-    .pub-item {
+    .pub-grid {
       display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 2rem;
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--rule);
-      align-items: start;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.2rem 1.6rem;
     }
-    .pub-item:first-of-type { border-top: 1px solid var(--rule); }
-
+    .pub-card { display: flex; flex-direction: column; }
     .pub-thumb {
       display: block;
-      width: 130px;
-      height: 168px;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 0.77;
       background: var(--card);
       border: 1px solid var(--rule);
-      box-shadow: 3px 3px 0 var(--rule);
-      position: relative;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
       text-decoration: none;
-      padding: 14px 12px;
-      transition: transform 0.2s, box-shadow 0.2s;
       overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .pub-thumb:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--accent); }
-    .pub-thumb.disabled { pointer-events: none; opacity: 0.55; }
-    .pub-thumb-bar { height: 5px; width: 34px; background: var(--accent2); margin-bottom: 10px; }
-    .pub-thumb-line { height: 3px; background: var(--rule); margin-bottom: 6px; border-radius: 1px; }
-    .pub-thumb-line.w90 { width: 90%; }
-    .pub-thumb-line.w75 { width: 75%; }
-    .pub-thumb-line.w60 { width: 60%; }
-    .pub-thumb-line.w85 { width: 85%; }
-    .pub-thumb-fold {
-      position: absolute; top: 0; right: 0;
-      width: 0; height: 0;
-      border-style: solid;
-      border-width: 0 16px 16px 0;
-      border-color: transparent var(--bg) transparent transparent;
-      box-shadow: -1px 1px 1px rgba(0,0,0,0.08);
-    }
-    .pub-thumb-label {
-      position: absolute; bottom: 10px; left: 12px; right: 12px;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.56rem;
-      letter-spacing: 0.06em;
+    .pub-thumb:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(42,77,110,0.18); }
+    .pub-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+    .pub-thumb.disabled { pointer-events: none; }
+    .pub-thumb-slot {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      border: 1.5px dashed var(--rule);
+      background: var(--bg);
       color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .pub-tag {
-      display: inline-block;
       font-family: 'DM Mono', monospace;
       font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.6rem;
-      border-radius: 2px;
-      margin-bottom: 0.7rem;
+      letter-spacing: 0.03em;
+      padding: 0.8rem;
     }
-    .pub-tag.review { background: #fff3cd; color: #7a5c00; border: 1px solid #e8d98a; }
-    .pub-tag.journal { background: #d4edda; color: #1a5c2a; border: 1px solid #9ed4ac; }
-    .pub-tag.conference { background: #d1ecf1; color: #0c5260; border: 1px solid #8dcdd8; }
-    .pub-title { font-size: 1.05rem; font-weight: 500; margin-bottom: 0.4rem; line-height: 1.4; }
-    .pub-authors { color: var(--muted); font-size: 0.92rem; font-style: italic; margin-bottom: 0.3rem; }
-    .pub-venue {
+    .pub-caption { margin-top: 0.8rem; }
+    .pub-authors { font-size: 0.92rem; font-weight: 500; line-height: 1.35; }
+    .pub-venue-line {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      letter-spacing: 0.02em;
+    }
+    .pub-venue-line a {
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .pub-venue-line a:hover { text-decoration: underline; }
+    .pub-title-full { font-size: 0.85rem; color: var(--muted); font-style: italic; margin-top: 0.3rem; line-height: 1.4; }
+    .pub-note {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
-    .pub-doi {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65rem;
       color: var(--muted);
-      margin-top: 0.3rem;
+      margin-top: 2.5rem;
+      font-style: italic;
     }
-    .pub-doi a { color: var(--accent2); text-decoration: none; }
-    .pub-doi a:hover { text-decoration: underline; }
+    .pub-subhead {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--rule);
+    }
+    .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .pub-list-item { padding: 1.2rem 0; border-bottom: 1px solid var(--rule); }
+    .pub-list-item:last-child { border-bottom: none; }
 
     /* ── SKILLS ──────────────────────────────────── */
     .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -426,8 +419,7 @@
       #hero { padding: 8rem 1.5rem 3rem; }
       .about-grid { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .pub-item { grid-template-columns: 90px 1fr; gap: 1.2rem; }
-      .pub-thumb { width: 90px; height: 116px; }
+      .pub-grid { grid-template-columns: repeat(2, 1fr); }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .hobbies-grid { grid-template-columns: 1fr; }
       .honors-list { grid-template-columns: 1fr; }
@@ -604,100 +596,55 @@
         <h2 class="section-title">Publications</h2>
       </div>
 
-      <div class="pub-item">
-        <a class="pub-thumb" href="https://doi.org/10.1038/s41467-026-73867-7" target="_blank" aria-label="Open paper">
-          <div class="pub-thumb-fold"></div>
-          <div class="pub-thumb-bar"></div>
-          <div class="pub-thumb-line w90"></div>
-          <div class="pub-thumb-line w75"></div>
-          <div class="pub-thumb-line w85"></div>
-          <div class="pub-thumb-line w60"></div>
-          <div class="pub-thumb-line w90"></div>
-          <div class="pub-thumb-line w75"></div>
-          <div class="pub-thumb-label">Nat. Comms · 2026</div>
-        </a>
-        <div>
-          <span class="pub-tag journal">Nature Communications · 2026</span>
-          <div class="pub-title">Single-phage profiling illuminates viral individuality during bacterial cell fate determination</div>
-          <div class="pub-authors">Homaee, E., Yao, T., Zhu, W., Golding, I.</div>
-          <div class="pub-venue">Nature Communications</div>
-          <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41467-026-73867-7" target="_blank">10.1038/s41467-026-73867-7</a></div>
-        </div>
-      </div>
+      <div class="pub-grid">
 
-      <div class="pub-item">
-        <a class="pub-thumb" href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank" aria-label="Open paper">
-          <div class="pub-thumb-fold"></div>
-          <div class="pub-thumb-bar"></div>
-          <div class="pub-thumb-line w75"></div>
-          <div class="pub-thumb-line w90"></div>
-          <div class="pub-thumb-line w60"></div>
-          <div class="pub-thumb-line w85"></div>
-          <div class="pub-thumb-line w75"></div>
-          <div class="pub-thumb-line w90"></div>
-          <div class="pub-thumb-label">Nature · 2024</div>
-        </a>
-        <div>
-          <span class="pub-tag journal">Nature · 2024</span>
-          <div class="pub-title">Transcription–replication interactions reveal bacterial genome regulation</div>
-          <div class="pub-authors">Pountain, A. W., Jiang, P., Yao, T., Homaee, E., et al.</div>
-          <div class="pub-venue">Nature, 626(7999), 661–669</div>
-          <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank">10.1038/s41586-023-06974-w</a></div>
+        <div class="pub-card">
+          <a class="pub-thumb" href="https://doi.org/10.1038/s41467-026-73867-7" target="_blank" aria-label="Open paper">
+            <div class="pub-thumb-slot">drop first-page<br>image here<br>(pub1.jpg)</div>
+          </a>
+          <div class="pub-caption">
+            <div class="pub-authors">Homaee, Yao, Zhu, Golding</div>
+            <div class="pub-venue-line"><a href="https://doi.org/10.1038/s41467-026-73867-7" target="_blank">Nature Communications 2026 [PDF]</a></div>
+            <div class="pub-title-full">Single-phage profiling illuminates viral individuality during bacterial cell fate determination</div>
+          </div>
         </div>
-      </div>
 
-      <div class="pub-item">
-        <a class="pub-thumb" href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank" aria-label="Open paper">
-          <div class="pub-thumb-fold"></div>
-          <div class="pub-thumb-bar"></div>
-          <div class="pub-thumb-line w90"></div>
-          <div class="pub-thumb-line w60"></div>
-          <div class="pub-thumb-line w85"></div>
-          <div class="pub-thumb-line w75"></div>
-          <div class="pub-thumb-line w90"></div>
-          <div class="pub-thumb-line w60"></div>
-          <div class="pub-thumb-label">Nat. Comms · 2024</div>
-        </a>
-        <div>
-          <span class="pub-tag journal">Nature Communications · 2024</span>
-          <div class="pub-title">Using bacterial population dynamics to count phages and their lysogens</div>
-          <div class="pub-authors">Geng, Y., Nguyen, T. V. P., Homaee, E., & Golding, I.</div>
-          <div class="pub-venue">Nature Communications, 15(1), 7814</div>
-          <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank">10.1038/s41467-024-51913-6</a></div>
+        <div class="pub-card">
+          <a class="pub-thumb" href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank" aria-label="Open paper">
+            <div class="pub-thumb-slot">drop first-page<br>image here<br>(pub2.jpg)</div>
+          </a>
+          <div class="pub-caption">
+            <div class="pub-authors">Pountain, Jiang, Yao, Homaee, et al.</div>
+            <div class="pub-venue-line"><a href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank">Nature 2024 [PDF]</a></div>
+            <div class="pub-title-full">Transcription–replication interactions reveal bacterial genome regulation</div>
+          </div>
         </div>
-      </div>
 
-      <div class="pub-item">
-        <div class="pub-thumb disabled" aria-label="No link available">
-          <div class="pub-thumb-fold"></div>
-          <div class="pub-thumb-bar"></div>
-          <div class="pub-thumb-line w75"></div>
-          <div class="pub-thumb-line w85"></div>
-          <div class="pub-thumb-line w60"></div>
-          <div class="pub-thumb-label">Abstract · 2024</div>
+        <div class="pub-card">
+          <a class="pub-thumb" href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank" aria-label="Open paper">
+            <div class="pub-thumb-slot">drop first-page<br>image here<br>(pub3.jpg)</div>
+          </a>
+          <div class="pub-caption">
+            <div class="pub-authors">Geng, Nguyen, Homaee, Golding</div>
+            <div class="pub-venue-line"><a href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank">Nat. Commun. 2024 [PDF]</a></div>
+            <div class="pub-title-full">Using bacterial population dynamics to count phages and their lysogens</div>
+          </div>
         </div>
-        <div>
-          <span class="pub-tag conference">Conference · 2024</span>
-          <div class="pub-title">Single-virus transcriptomics of bacteriophage lambda</div>
-          <div class="pub-authors">Homaee, E., & Golding, I.</div>
-          <div class="pub-venue">Biophysical Society Annual Meeting 2024</div>
-        </div>
-      </div>
 
-      <div class="pub-item">
-        <div class="pub-thumb disabled" aria-label="No link available">
-          <div class="pub-thumb-fold"></div>
-          <div class="pub-thumb-bar"></div>
-          <div class="pub-thumb-line w85"></div>
-          <div class="pub-thumb-line w60"></div>
-          <div class="pub-thumb-line w75"></div>
-          <div class="pub-thumb-label">Abstract · 2023</div>
+      </div>
+      <div class="pub-note">Thumbnails are placeholders — upload a screenshot or exported image of each paper's first page (yours to share as author) and I'll drop them in exactly where the dashed boxes are.</div>
+
+      <h3 class="pub-subhead">Conference Abstracts</h3>
+      <div class="pub-list">
+        <div class="pub-list-item">
+          <div class="pub-authors">Homaee & Golding</div>
+          <div class="pub-venue-line">Biophysical Society Annual Meeting 2024</div>
+          <div class="pub-title-full">Single-virus transcriptomics of bacteriophage lambda</div>
         </div>
-        <div>
-          <span class="pub-tag conference">Conference · 2023</span>
-          <div class="pub-title">Modeling Alzheimer's Disease progression using neural ODEs</div>
-          <div class="pub-authors">Homaee, E., Jamalian, S., et al.</div>
-          <div class="pub-venue">ACoP14 Annual Meeting</div>
+        <div class="pub-list-item">
+          <div class="pub-authors">Homaee, Jamalian, et al.</div>
+          <div class="pub-venue-line">ACoP14 Annual Meeting 2023</div>
+          <div class="pub-title-full">Modeling Alzheimer's Disease progression using neural ODEs</div>
         </div>
       </div>
     </div>
@@ -769,11 +716,17 @@
           <div class="skill-card-icon">🔬</div>
           <div class="skill-card-title">Experimental</div>
           <div class="skill-tags">
-            <span class="skill-tag">[Add your wet-lab / experimental skills]</span>
+            <span class="skill-tag">Molecular Biology</span><span class="skill-tag">Molecular Cloning</span>
+            <span class="skill-tag">PCR / qPCR</span><span class="skill-tag">seqFISH Sample Prep</span>
+            <span class="skill-tag">MERFISH</span><span class="skill-tag">Fluorescence Microscopy</span>
+            <span class="skill-tag">Confocal Imaging</span><span class="skill-tag">Live-Cell Imaging</span>
+            <span class="skill-tag">Microbiology / Bacterial Culture</span><span class="skill-tag">Phage Propagation & Titering</span>
+            <span class="skill-tag">Flow Cytometry</span><span class="skill-tag">Cell Culture</span>
+            <span class="skill-tag">cfDNA Extraction</span><span class="skill-tag">Methylation Assays</span>
           </div>
         </div>
       </div>
-      <div class="skill-note">Experimental card is a placeholder — tell me which wet-lab techniques to list (e.g. seqFISH sample prep, microscopy, cloning, PCR) and I'll fill it in.</div>
+      <div class="skill-note">I drafted the Experimental card from your CV and papers (seqFISH/MERFISH imaging, bacterial and phage work, cfDNA methylation). Let me know if anything should be added, removed, or reworded.</div>
     </div>
   </section>
 
