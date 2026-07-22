@@ -14,11 +14,9 @@
       --accent2: #b5471b;
       --rule: #d4cfc6;
       --card: #ffffff;
-      --hover: #eef2f7;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -60,15 +58,12 @@
 
     /* ── HERO ────────────────────────────────────── */
     #hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 58px;
-    }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 6rem 4rem 6rem 6rem;
-      border-right: 1px solid var(--rule);
+      min-height: 62vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 6rem 5rem;
+      max-width: 900px;
     }
     .hero-eyebrow {
       font-family: 'DM Mono', monospace;
@@ -77,24 +72,33 @@
       text-transform: uppercase;
       color: var(--accent2);
       margin-bottom: 1.4rem;
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.1s;
     }
     .hero-name {
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
       font-weight: 500;
+      font-style: normal;
       line-height: 1.1;
       letter-spacing: -0.01em;
+      color: var(--accent);
       margin-bottom: 1.6rem;
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.2s;
     }
-    .hero-name em { font-style: italic; color: var(--accent); }
     .hero-tagline {
       font-size: 1.15rem;
       color: var(--muted);
-      max-width: 420px;
-      margin-bottom: 2.5rem;
+      max-width: 560px;
+      margin-bottom: 2.2rem;
       line-height: 1.65;
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.3s;
     }
     .hero-contacts {
-      display: flex; flex-direction: column; gap: 0.5rem;
+      display: flex; flex-wrap: wrap; gap: 1.6rem;
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.4s;
     }
     .hero-contacts a {
       font-family: 'DM Mono', monospace;
@@ -105,28 +109,6 @@
       transition: color 0.2s;
     }
     .hero-contacts a:hover { color: var(--accent2); }
-
-    .hero-right {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 6rem 5rem 6rem 4rem;
-      gap: 2.5rem;
-    }
-    .stat-block { border-left: 3px solid var(--rule); padding-left: 1.4rem; }
-    .stat-block:hover { border-left-color: var(--accent); transition: border-color 0.3s; }
-    .stat-num {
-      font-size: 2.6rem;
-      font-weight: 500;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.3rem;
-    }
 
     /* ── SECTIONS ────────────────────────────────── */
     section { padding: 7rem 0; border-top: 1px solid var(--rule); }
@@ -179,7 +161,6 @@
       border-bottom: 1px solid var(--rule);
     }
     .exp-item:first-of-type { border-top: 1px solid var(--rule); }
-    .exp-meta { }
     .exp-period {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
@@ -194,7 +175,6 @@
       color: var(--muted);
       margin-top: 0.3rem;
     }
-    .exp-body { }
     .exp-role { font-size: 1.15rem; font-weight: 500; margin-bottom: 0.3rem; }
     .exp-supervisor {
       font-family: 'DM Mono', monospace;
@@ -215,13 +195,69 @@
       position: absolute; left: 0;
       color: var(--rule);
     }
+    .exp-pub {
+      display: inline-block;
+      margin-top: 0.6rem;
+      margin-left: 1.2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      color: var(--accent2);
+      border-bottom: 1px solid var(--accent2);
+      padding-bottom: 1px;
+      text-decoration: none;
+    }
+    .exp-pub:hover { color: var(--accent); border-color: var(--accent); }
 
     /* ── PUBLICATIONS ────────────────────────────── */
     .pub-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 2rem;
       padding: 2rem 0;
       border-bottom: 1px solid var(--rule);
+      align-items: start;
     }
     .pub-item:first-of-type { border-top: 1px solid var(--rule); }
+
+    .pub-thumb {
+      display: block;
+      width: 130px;
+      height: 168px;
+      background: var(--card);
+      border: 1px solid var(--rule);
+      box-shadow: 3px 3px 0 var(--rule);
+      position: relative;
+      text-decoration: none;
+      padding: 14px 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+    }
+    .pub-thumb:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--accent); }
+    .pub-thumb.disabled { pointer-events: none; opacity: 0.55; }
+    .pub-thumb-bar { height: 5px; width: 34px; background: var(--accent2); margin-bottom: 10px; }
+    .pub-thumb-line { height: 3px; background: var(--rule); margin-bottom: 6px; border-radius: 1px; }
+    .pub-thumb-line.w90 { width: 90%; }
+    .pub-thumb-line.w75 { width: 75%; }
+    .pub-thumb-line.w60 { width: 60%; }
+    .pub-thumb-line.w85 { width: 85%; }
+    .pub-thumb-fold {
+      position: absolute; top: 0; right: 0;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 0 16px 16px 0;
+      border-color: transparent var(--bg) transparent transparent;
+      box-shadow: -1px 1px 1px rgba(0,0,0,0.08);
+    }
+    .pub-thumb-label {
+      position: absolute; bottom: 10px; left: 12px; right: 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
     .pub-tag {
       display: inline-block;
       font-family: 'DM Mono', monospace;
@@ -280,6 +316,13 @@
       color: var(--muted);
       border-radius: 2px;
     }
+    .skill-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 2rem;
+      font-style: italic;
+    }
 
     /* ── HOBBIES ─────────────────────────────────── */
     .hobbies-intro {
@@ -294,9 +337,9 @@
       background: var(--card);
       border: 1px solid var(--rule);
       padding: 2.2rem;
-      transition: box-shadow 0.2s, transform 0.2s;
       position: relative;
       overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
     }
     .hobby-card::before {
       content: '';
@@ -311,10 +354,10 @@
     .hobby-card:hover { box-shadow: 0 6px 24px rgba(42,77,110,0.1); transform: translateY(-2px); }
     .hobby-emoji { font-size: 2rem; margin-bottom: 0.8rem; }
     .hobby-title { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.6rem; }
-    .hobby-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+    .hobby-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.2rem; }
     .hobby-highlight {
       display: inline-block;
-      margin-top: 0.8rem;
+      margin-bottom: 1.2rem;
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
       letter-spacing: 0.1em;
@@ -323,14 +366,27 @@
       border-bottom: 1px solid var(--accent2);
       padding-bottom: 1px;
     }
+    .hobby-photos { display: flex; gap: 0.6rem; }
+    .hobby-photo-slot {
+      flex: 1;
+      aspect-ratio: 4 / 3;
+      border: 1.5px dashed var(--rule);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      text-align: center;
+      letter-spacing: 0.04em;
+      padding: 0.4rem;
+    }
 
     /* ── HONORS ──────────────────────────────────── */
     .honors-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-    .honor-item {
-      border: 1px solid var(--rule);
-      padding: 1.5rem;
-      background: var(--card);
-    }
+    .honor-item { border: 1px solid var(--rule); padding: 1.5rem; background: var(--card); }
     .honor-year {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
@@ -342,12 +398,8 @@
     .honor-desc { font-size: 0.88rem; color: var(--muted); font-style: italic; }
 
     /* ── FOOTER ──────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 3rem;
-      text-align: center;
-    }
-    .footer-name { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.5rem; }
+    footer { border-top: 1px solid var(--rule); padding: 3rem; text-align: center; }
+    .footer-name { font-size: 1.4rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--accent); }
     .footer-meta {
       font-family: 'DM Mono', monospace;
       font-size: 0.68rem;
@@ -364,28 +416,18 @@
     }
     .footer-links a:hover { color: var(--accent2); }
 
-    /* ── ANIMATIONS ──────────────────────────────── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    .hero-left > * { animation: fadeUp 0.7s ease both; }
-    .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
-    .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
-    .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
-    .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
-    .hero-right > * { animation: fadeUp 0.7s ease both; }
-    .hero-right > *:nth-child(1) { animation-delay: 0.3s; }
-    .hero-right > *:nth-child(2) { animation-delay: 0.45s; }
-    .hero-right > *:nth-child(3) { animation-delay: 0.6s; }
 
     /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 860px) {
-      #hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 4rem 2rem 2rem; border-right: none; border-bottom: 1px solid var(--rule); }
-      .hero-right { padding: 2rem; flex-direction: row; flex-wrap: wrap; gap: 1.5rem; }
+      #hero { padding: 8rem 1.5rem 3rem; }
       .about-grid { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pub-item { grid-template-columns: 90px 1fr; gap: 1.2rem; }
+      .pub-thumb { width: 90px; height: 116px; }
       .skills-grid { grid-template-columns: 1fr 1fr; }
       .hobbies-grid { grid-template-columns: 1fr; }
       .honors-list { grid-template-columns: 1fr; }
@@ -411,32 +453,15 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-left">
-      <div class="hero-eyebrow">Biophysicist · Computational Biologist · Data Scientist</div>
-      <h1 class="hero-name">Ehsan<br><em>Homaee</em></h1>
-      <p class="hero-tagline">
-        Ph.D. Candidate at the University of Illinois Urbana–Champaign, working at the intersection of single-cell biology, machine learning, and quantitative modeling.
-      </p>
-      <div class="hero-contacts">
-        <a href="mailto:ehomaee2@illinois.edu">ehomaee2@illinois.edu</a>
-        <a href="mailto:ehsanhomaee1996@gmail.com">ehsanhomaee1996@gmail.com</a>
-        <a href="tel:+1202">+1 (202) </a>
-        <a href="#about">Champaign, IL 61820</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="stat-block">
-        <div class="stat-num">5+</div>
-        <div class="stat-label">Years of Doctoral Research</div>
-      </div>
-      <div class="stat-block">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Peer-Reviewed Publications</div>
-      </div>
-      <div class="stat-block">
-        <div class="stat-num">3.96</div>
-        <div class="stat-label">Ph.D. GPA / 4.0</div>
-      </div>
+    <div class="hero-eyebrow">Biophysicist · Computational Biologist · Data Scientist</div>
+    <h1 class="hero-name">Ehsan Homaee</h1>
+    <p class="hero-tagline">
+      Ph.D. Candidate at the University of Illinois Urbana–Champaign, working at the intersection of single-cell biology, machine learning, and quantitative modeling.
+    </p>
+    <div class="hero-contacts">
+      <a href="mailto:ehomaee2@illinois.edu">ehomaee2@illinois.edu</a>
+      <a href="mailto:ehsanhomaee1996@gmail.com">ehsanhomaee1996@gmail.com</a>
+      <a href="#about">Champaign, IL</a>
     </div>
   </section>
 
@@ -459,7 +484,7 @@
             I combine spatial transcriptomics (seqFISH), probabilistic inference, and biophysical modeling to reconstruct single-virus transcriptomes and quantify transcriptional heterogeneity at unprecedented resolution. I also develop genome-wide models linking transcriptional regulation to DNA replication in bacteria.
           </p>
           <p>
-            Beyond the lab, I am passionate about the outdoors, community service, and endurance challenges. I am a member of <strong>I4K (Illini 4000)</strong>, where I fundraise to support children affected by cancer — including an upcoming cross-country biking journey planned for summer 2026.
+            Beyond the lab, I was a member of <strong>I4K (Illini 4000)</strong>, a student organization that raises funds for children affected by cancer, and rode cross-country with the group in summer 2026 as part of that effort.
           </p>
         </div>
         <div class="about-edu">
@@ -502,9 +527,18 @@
           <div class="exp-role">Graduate Research Assistant</div>
           <div class="exp-supervisor">Supervisor: Prof. Ido Golding</div>
           <ul class="exp-bullets">
-            <li>Combined spatial transcriptomics imaging (seqFISH) with probabilistic machine-learning inference to reconstruct single-virus transcriptomes, quantify transcriptional heterogeneity, and uncover single-virus individuality in fate decisions.</li>
-            <li>Developed genome-wide models linking transcriptional regulation to DNA replication; integrated scRNA-seq with biophysical modeling to quantify replication-dependent gene expression in <em>E. coli</em> and <em>S. aureus</em>.</li>
-            <li>Contributed to population-dynamics models of phage–bacteria interactions; estimated infection parameters from high-throughput optical-density time series.</li>
+            <li>
+              Combined spatial transcriptomics imaging (seqFISH) with probabilistic machine-learning inference to reconstruct single-virus transcriptomes, quantify transcriptional heterogeneity, and uncover single-virus individuality in fate decisions.
+              <br><a class="exp-pub" href="https://doi.org/10.1038/s41467-026-73867-7" target="_blank">Published in Nature Communications (2026) →</a>
+            </li>
+            <li>
+              Developed genome-wide models linking transcriptional regulation to DNA replication; integrated scRNA-seq with biophysical modeling to quantify replication-dependent gene expression in <em>E. coli</em> and <em>S. aureus</em>.
+              <br><a class="exp-pub" href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank">Published in Nature (2024) →</a>
+            </li>
+            <li>
+              Contributed to the development and calibration of population-dynamics models of phage–bacteria interactions; estimated infection parameters from high-throughput optical-density time series.
+              <br><a class="exp-pub" href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank">Published in Nature Communications (2024) →</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -519,7 +553,10 @@
           <div class="exp-role">Machine Learning Intern</div>
           <div class="exp-supervisor">Supervisors: Dr. James Lu · Dr. Samira Jamalian</div>
           <ul class="exp-bullets">
-            <li>Built neural ODE models of Alzheimer's disease progression, enabling quantitative prediction of disease trajectories from patient data.</li>
+            <li>
+              Built neural ODE models of Alzheimer's disease progression, enabling quantitative prediction of disease trajectories from patient data.
+              <br><a class="exp-pub" href="#publications">Presented at ACoP14 (2023) →</a>
+            </li>
             <li>Built scalable ML pipelines for pharmacometrics time-series analysis, supporting predictive disease modeling.</li>
           </ul>
         </div>
@@ -568,41 +605,100 @@
       </div>
 
       <div class="pub-item">
-        <span class="pub-tag review">Under Review</span>
-        <div class="pub-title">Single-phage profiling illuminates viral individuality during cell fate determination</div>
-        <div class="pub-authors">Homaee, E., Yao, T., Zhu, W., Golding, I.</div>
-        <div class="pub-venue">Submitted to Nature Communications</div>
-        <div class="pub-doi">DOI: <a href="https://doi.org/10.64898/2026.02.20.707030" target="_blank">10.64898/2026.02.20.707030</a></div>
+        <a class="pub-thumb" href="https://doi.org/10.1038/s41467-026-73867-7" target="_blank" aria-label="Open paper">
+          <div class="pub-thumb-fold"></div>
+          <div class="pub-thumb-bar"></div>
+          <div class="pub-thumb-line w90"></div>
+          <div class="pub-thumb-line w75"></div>
+          <div class="pub-thumb-line w85"></div>
+          <div class="pub-thumb-line w60"></div>
+          <div class="pub-thumb-line w90"></div>
+          <div class="pub-thumb-line w75"></div>
+          <div class="pub-thumb-label">Nat. Comms · 2026</div>
+        </a>
+        <div>
+          <span class="pub-tag journal">Nature Communications · 2026</span>
+          <div class="pub-title">Single-phage profiling illuminates viral individuality during bacterial cell fate determination</div>
+          <div class="pub-authors">Homaee, E., Yao, T., Zhu, W., Golding, I.</div>
+          <div class="pub-venue">Nature Communications</div>
+          <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41467-026-73867-7" target="_blank">10.1038/s41467-026-73867-7</a></div>
+        </div>
       </div>
 
       <div class="pub-item">
-        <span class="pub-tag journal">Nature · 2024</span>
-        <div class="pub-title">Transcription–replication interactions reveal bacterial genome regulation</div>
-        <div class="pub-authors">Pountain, A. W., Jiang, P., Yao, T., Homaee, E., et al.</div>
-        <div class="pub-venue">Nature, 626(7999), 661–669</div>
-        <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank">10.1038/s41586-023-06974-w</a></div>
+        <a class="pub-thumb" href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank" aria-label="Open paper">
+          <div class="pub-thumb-fold"></div>
+          <div class="pub-thumb-bar"></div>
+          <div class="pub-thumb-line w75"></div>
+          <div class="pub-thumb-line w90"></div>
+          <div class="pub-thumb-line w60"></div>
+          <div class="pub-thumb-line w85"></div>
+          <div class="pub-thumb-line w75"></div>
+          <div class="pub-thumb-line w90"></div>
+          <div class="pub-thumb-label">Nature · 2024</div>
+        </a>
+        <div>
+          <span class="pub-tag journal">Nature · 2024</span>
+          <div class="pub-title">Transcription–replication interactions reveal bacterial genome regulation</div>
+          <div class="pub-authors">Pountain, A. W., Jiang, P., Yao, T., Homaee, E., et al.</div>
+          <div class="pub-venue">Nature, 626(7999), 661–669</div>
+          <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41586-023-06974-w" target="_blank">10.1038/s41586-023-06974-w</a></div>
+        </div>
       </div>
 
       <div class="pub-item">
-        <span class="pub-tag journal">Nature Communications · 2024</span>
-        <div class="pub-title">Using bacterial population dynamics to count phages and their lysogens</div>
-        <div class="pub-authors">Geng, Y., Nguyen, T. V. P., Homaee, E., & Golding, I.</div>
-        <div class="pub-venue">Nature Communications, 15(1), 7814</div>
-        <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank">10.1038/s41467-024-51913-6</a></div>
+        <a class="pub-thumb" href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank" aria-label="Open paper">
+          <div class="pub-thumb-fold"></div>
+          <div class="pub-thumb-bar"></div>
+          <div class="pub-thumb-line w90"></div>
+          <div class="pub-thumb-line w60"></div>
+          <div class="pub-thumb-line w85"></div>
+          <div class="pub-thumb-line w75"></div>
+          <div class="pub-thumb-line w90"></div>
+          <div class="pub-thumb-line w60"></div>
+          <div class="pub-thumb-label">Nat. Comms · 2024</div>
+        </a>
+        <div>
+          <span class="pub-tag journal">Nature Communications · 2024</span>
+          <div class="pub-title">Using bacterial population dynamics to count phages and their lysogens</div>
+          <div class="pub-authors">Geng, Y., Nguyen, T. V. P., Homaee, E., & Golding, I.</div>
+          <div class="pub-venue">Nature Communications, 15(1), 7814</div>
+          <div class="pub-doi">DOI: <a href="https://doi.org/10.1038/s41467-024-51913-6" target="_blank">10.1038/s41467-024-51913-6</a></div>
+        </div>
       </div>
 
       <div class="pub-item">
-        <span class="pub-tag conference">Conference · 2024</span>
-        <div class="pub-title">Single-virus transcriptomics of bacteriophage lambda</div>
-        <div class="pub-authors">Homaee, E., & Golding, I.</div>
-        <div class="pub-venue">Biophysical Society Annual Meeting 2024</div>
+        <div class="pub-thumb disabled" aria-label="No link available">
+          <div class="pub-thumb-fold"></div>
+          <div class="pub-thumb-bar"></div>
+          <div class="pub-thumb-line w75"></div>
+          <div class="pub-thumb-line w85"></div>
+          <div class="pub-thumb-line w60"></div>
+          <div class="pub-thumb-label">Abstract · 2024</div>
+        </div>
+        <div>
+          <span class="pub-tag conference">Conference · 2024</span>
+          <div class="pub-title">Single-virus transcriptomics of bacteriophage lambda</div>
+          <div class="pub-authors">Homaee, E., & Golding, I.</div>
+          <div class="pub-venue">Biophysical Society Annual Meeting 2024</div>
+        </div>
       </div>
 
       <div class="pub-item">
-        <span class="pub-tag conference">Conference · 2023</span>
-        <div class="pub-title">Modeling Alzheimer's Disease progression using neural ODEs</div>
-        <div class="pub-authors">Homaee, E., Jamalian, S., et al.</div>
-        <div class="pub-venue">ACoP14 Annual Meeting</div>
+        <div class="pub-thumb disabled" aria-label="No link available">
+          <div class="pub-thumb-fold"></div>
+          <div class="pub-thumb-bar"></div>
+          <div class="pub-thumb-line w85"></div>
+          <div class="pub-thumb-line w60"></div>
+          <div class="pub-thumb-line w75"></div>
+          <div class="pub-thumb-label">Abstract · 2023</div>
+        </div>
+        <div>
+          <span class="pub-tag conference">Conference · 2023</span>
+          <div class="pub-title">Modeling Alzheimer's Disease progression using neural ODEs</div>
+          <div class="pub-authors">Homaee, E., Jamalian, S., et al.</div>
+          <div class="pub-venue">ACoP14 Annual Meeting</div>
+        </div>
       </div>
     </div>
   </section>
@@ -631,7 +727,7 @@
           <div class="skill-tags">
             <span class="skill-tag">tidyverse</span><span class="skill-tag">ggplot2</span>
             <span class="skill-tag">DESeq2</span><span class="skill-tag">Seurat</span>
-            <span class="skill-tag">SimBiology</span>
+            <span class="skill-tag">SimBiology</span><span class="skill-tag">C/C++</span>
           </div>
         </div>
         <div class="skill-card">
@@ -640,7 +736,7 @@
           <div class="skill-tags">
             <span class="skill-tag">Supervised Learning</span><span class="skill-tag">Unsupervised Learning</span>
             <span class="skill-tag">Neural ODEs</span><span class="skill-tag">CNNs</span>
-            <span class="skill-tag">RNNs</span><span class="skill-tag">Deep Learning</span><span class="skill-tag">Transformers</span>
+            <span class="skill-tag">RNNs</span><span class="skill-tag">Transformers</span>
           </div>
         </div>
         <div class="skill-card">
@@ -669,7 +765,15 @@
             <span class="skill-tag">Dimensionality Reduction</span><span class="skill-tag">Probabilistic Modeling</span>
           </div>
         </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🔬</div>
+          <div class="skill-card-title">Experimental</div>
+          <div class="skill-tags">
+            <span class="skill-tag">[Add your wet-lab / experimental skills]</span>
+          </div>
+        </div>
       </div>
+      <div class="skill-note">Experimental card is a placeholder — tell me which wet-lab techniques to list (e.g. seqFISH sample prep, microscopy, cloning, PCR) and I'll fill it in.</div>
     </div>
   </section>
 
@@ -689,9 +793,14 @@
           <div class="hobby-emoji">🚴</div>
           <div class="hobby-title">Cross-Country Cycling for Cancer</div>
           <div class="hobby-desc">
-            I am a proud member of <strong>I4K (Illini 4000)</strong>, a student organization dedicated to raising funds and awareness for childhood cancer. In <strong>summer 2026</strong>, I am planning a cross-country bike ride to raise money for children and families affected by cancer. It's a challenge that blends physical endurance with a cause I deeply care about.
+            I was a proud member of <strong>I4K (Illini 4000)</strong>, a student organization dedicated to raising funds and awareness for childhood cancer. In <strong>summer 2026</strong>, I rode cross-country with the group to raise money for children and families affected by cancer — a challenge that blended physical endurance with a cause I deeply care about.
           </div>
           <span class="hobby-highlight">I4K Member · Fundraiser · Summer 2026</span>
+          <div class="hobby-photos">
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+          </div>
         </div>
 
         <div class="hobby-card">
@@ -701,6 +810,11 @@
             I have a deep passion for mountaineering and high-altitude challenges. I have summited <strong>Mount Damavand</strong> (5,610 m / 18,406 ft) — the highest peak in Iran, the highest volcano in Asia, and one of the highest in the world. Standing at that altitude taught me as much about resilience as any experiment.
           </div>
           <span class="hobby-highlight">Summited Damavand · 5,610 m</span>
+          <div class="hobby-photos">
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+          </div>
         </div>
 
         <div class="hobby-card">
@@ -710,6 +824,11 @@
             Whether it's a day hike through forest trails or a multi-day backcountry route, hiking is my way of clearing my mind and reconnecting with the natural world. I enjoy exploring new terrain and challenging myself with longer distances and more technical trails.
           </div>
           <span class="hobby-highlight">Trails · Distance Hiking · Backcountry</span>
+          <div class="hobby-photos">
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+          </div>
         </div>
 
         <div class="hobby-card">
@@ -719,6 +838,11 @@
             There's nothing quite like sleeping under a sky full of stars and waking up to the sound of a forest. Camping is central to my outdoor life — from car camping with friends to wilderness bivouacs. Being outdoors grounds me and keeps me curious about the natural world.
           </div>
           <span class="hobby-highlight">Wilderness · Stargazing · Nature</span>
+          <div class="hobby-photos">
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+            <div class="hobby-photo-slot">your photo</div>
+          </div>
         </div>
 
       </div>
@@ -779,7 +903,6 @@
     <div class="footer-links">
       <a href="mailto:ehomaee2@illinois.edu">Email (UIUC)</a>
       <a href="mailto:ehsanhomaee1996@gmail.com">Email (Personal)</a>
-      <a href="tel:+12027600308">Phone</a>
     </div>
   </footer>
 
