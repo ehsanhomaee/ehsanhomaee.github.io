@@ -59,12 +59,35 @@
     /* ── HERO ────────────────────────────────────── */
     #hero {
       min-height: 62vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 10rem 6rem 5rem;
-      max-width: 900px;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding: 9rem 6rem 5rem;
+      max-width: 1100px;
     }
+    .hero-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--rule);
+      background: var(--card);
+      overflow: hidden;
+      animation: fadeUp 0.7s ease both;
+      animation-delay: 0.05s;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero-photo-slot {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      border: 1.5px dashed var(--rule);
+      color: var(--muted);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.03em;
+      padding: 1rem;
+    }
+    .hero-text { }
     .hero-eyebrow {
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
@@ -416,7 +439,8 @@
 
     /* ── RESPONSIVE ──────────────────────────────── */
     @media (max-width: 860px) {
-      #hero { padding: 8rem 1.5rem 3rem; }
+      #hero { grid-template-columns: 1fr; padding: 8rem 1.5rem 3rem; gap: 2rem; }
+      .hero-photo { max-width: 220px; margin: 0 auto; }
       .about-grid { grid-template-columns: 1fr; }
       .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
       .pub-grid { grid-template-columns: repeat(2, 1fr); }
@@ -445,15 +469,20 @@
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-eyebrow">Biophysicist · Computational Biologist · Data Scientist</div>
-    <h1 class="hero-name">Ehsan Homaee</h1>
-    <p class="hero-tagline">
-      Ph.D. Candidate at the University of Illinois Urbana–Champaign, working at the intersection of single-cell biology, machine learning, and quantitative modeling.
-    </p>
-    <div class="hero-contacts">
-      <a href="mailto:ehomaee2@illinois.edu">ehomaee2@illinois.edu</a>
-      <a href="mailto:ehsanhomaee1996@gmail.com">ehsanhomaee1996@gmail.com</a>
-      <a href="#about">Champaign, IL</a>
+    <div class="hero-photo">
+      <div class="hero-photo-slot">drop your<br>photo here<br>(hero.jpg)</div>
+    </div>
+    <div class="hero-text">
+      <div class="hero-eyebrow">Biophysicist · Computational Biologist · Data Scientist</div>
+      <h1 class="hero-name">Ehsan Homaee</h1>
+      <p class="hero-tagline">
+        Ph.D. Candidate at the University of Illinois Urbana–Champaign, working at the intersection of single-cell biology, machine learning, and quantitative modeling.
+      </p>
+      <div class="hero-contacts">
+        <a href="mailto:ehomaee2@illinois.edu">ehomaee2@illinois.edu</a>
+        <a href="mailto:ehsanhomaee1996@gmail.com">ehsanhomaee1996@gmail.com</a>
+        <a href="#about">Champaign, IL</a>
+      </div>
     </div>
   </section>
 
@@ -726,6 +755,7 @@
           </div>
         </div>
       </div>
+      <div class="skill-note">I drafted the Experimental card from your CV and papers (seqFISH/MERFISH imaging, bacterial and phage work, cfDNA methylation). Let me know if anything should be added, removed, or reworded.</div>
     </div>
   </section>
 
